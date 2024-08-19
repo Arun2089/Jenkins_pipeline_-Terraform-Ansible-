@@ -4,10 +4,10 @@
   become: true
 
   tasks:
-    - name: apt-get update
+    - name: Update apt cache
       apt:
         update_cache: yes
-      
+
     - name: Install dependencies for Docker
       apt:
         name: 
@@ -53,14 +53,17 @@
         name: openjdk-11-jdk
         state: present
 
-     - name: Add Jenkins repository
-      become: true
+    - name: Add Jenkins repository key manually
       command: curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | apt-key add -
 
     - name: Add Jenkins repository
       apt_repository:
         repo: deb http://pkg.jenkins.io/debian-stable binary/
         state: present
+
+    - name: Update apt cache after adding Jenkins repository
+      apt:
+        update_cache: yes
 
     - name: Install Jenkins
       apt:
@@ -73,12 +76,3 @@
         state: started
         enabled: yes
 
-   
-    
-     
-
-    
-    
-  
-    
-   
