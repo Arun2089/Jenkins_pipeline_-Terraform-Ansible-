@@ -14,3 +14,4 @@ chmod 700 ~/.ssh
   echo "  User ubuntu" >> ~/.ssh/config
   echo "  IdentityFile $pwd_path/Key.pem" >> ~/.ssh/config
   echo "  ProxyJump public_instance" >> ~/.ssh/config
+chmod 400 /var/lib/jenkins/workspace/Major_pipeline_1/terraform/Key.pem
