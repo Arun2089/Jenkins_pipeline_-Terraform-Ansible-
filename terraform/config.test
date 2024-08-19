@@ -1,0 +1,11 @@
+Host public_instance
+  HostName 43.205.233.89
+  Port 22
+  User ubuntu
+  IdentityFile /Users/admin/code/Task_jenkins_pipeline/terraform/Key.pem
+ 
+Host private_instance
+  HostName 10.0.0.14
+  User ubuntu
+  IdentityFile /Users/admin/code/Task_jenkins_pipeline/terraform/Key.pem
+  ProxyJump public_instance
