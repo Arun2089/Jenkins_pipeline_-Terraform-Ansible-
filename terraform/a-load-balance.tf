@@ -80,9 +80,9 @@ resource "aws_lb_target_group" "jenkins" {
 
 # Attach EC2 instances to the Target Group
 resource "aws_lb_target_group_attachment" "jenkins_instance_attachment" {
-  count              = length(aws_instance.private_instance)
+  count              = 1
   target_group_arn   = aws_lb_target_group.jenkins.arn
-  target_id          = aws_instance.private_instance[count.index].id
+  target_id          = "i-0dd651dd53bef2f02"
   port               = 8080
 
   depends_on = [
