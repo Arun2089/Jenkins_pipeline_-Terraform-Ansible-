@@ -1,5 +1,5 @@
 resource "aws_route53_record" "alb_record" {
-  zone_id = Z01289041WN99TK7TRRUC 
+  zone_id = "Z01289041WN99TK7TRRUC"
   name    = "jenkinstest.arunlohar.online"  
   type    = "A"
 
