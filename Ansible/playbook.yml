@@ -54,7 +54,8 @@
         state: present
 
     - name: Add Jenkins repository key manually
-      command: curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | apt-key add -
+      become: true
+      shell: curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | apt-key add -
 
     - name: Add Jenkins repository
       apt_repository:
@@ -75,4 +76,3 @@
         name: jenkins
         state: started
         enabled: yes
-
