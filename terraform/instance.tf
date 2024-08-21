@@ -6,6 +6,11 @@ resource "aws_instance" "private_instance" {
   key_name      = "Key"
   vpc_security_group_ids = [aws_security_group.sg_instance.id]
 
+  root_block_device {
+    volume_size = 30
+  
+  }
+
   tags = {
     Name = "Private_Instance_${count.index + 1}"
   }
