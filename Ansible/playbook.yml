@@ -49,36 +49,35 @@
         groups: docker
         append: yes
 
-    - name: Install Java (Jenkins dependency)
-      apt:
-        name: openjdk-11-jdk
+    - name: add jenkins key 
+      apt_key:  
+        url:  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+        state: present 
+
+    - name: add jenkins repo 
+      apt_repository: 
+        repo: 'deb https://pkg.jenkins.io/debian-stable binary/'
+        state: present 
+
+    - name: install java #install java as jenkins need jdk
+      apt: 
+        name: openjdk-11-jre
         state: present
 
-    - name: Add Jenkins repository key
-      apt_key:
-        url: https://pkg.jenkins.io/debian/jenkins.io.key
-        state: present
+    - name: install jenkins  #install jenkins
+      apt: 
+        name: jenkins 
+        state: present 
 
-    - name: Add Jenkins repository
-      apt_repository:
-        repo: deb http://pkg.jenkins.io/debian-stable binary/
-        state: present
+    - name: start jenkins service 
+      service: 
+        name: jenkins 
+        state: started 
 
-    - name: Update apt cache after adding Jenkins repository
-      apt:
-        update_cache: yes
-
-    - name: Install Jenkins
-      apt:
-        name: jenkins
-        state: present
-
-    - name: Start Jenkins service
-      service:
-        name: jenkins
-        state: started
-        enabled: yes
-
+    - name: enable jenkins to start at boot time 
+      service: 
+        name: jenkins 
+        enabled: yes 
     - name: Add jenkins user to docker group
       user:
         name: jenkins
