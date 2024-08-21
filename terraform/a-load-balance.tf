@@ -130,7 +130,7 @@ resource "aws_lb_target_group_attachment" "app_react_instance_attachment" {
 resource "aws_lb_listener_rule" "this" {
   action {
     type             = "forward"
-    target_group_arn = aws_alb_target_group.app-react.arn
+    target_group_arn = aws_alb_target_group.app_react.arn
   }
 
  condition {
