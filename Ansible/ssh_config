@@ -1,0 +1,12 @@
+Host public_instance
+  HostName $public_ip_bastion
+  Port 22
+  User ubuntu
+  IdentityFile /var/lib/jenkins/workspace/Major_pipeline_1/terraform/Key.pem
+ 
+Host private_instance
+  HostName $private_ip_main
+  Port 22
+  User ubuntu
+  IdentityFile /var/lib/jenkins/workspace/Major_pipeline_1/terraform/Key.pem
+  ProxyJump public_instance
