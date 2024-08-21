@@ -139,5 +139,5 @@ resource "aws_lb_listener_rule" "this" {
     }
   }
 
-  listener_arn = data.aws_lb_listener.https.arn
+  listener_arn = aws_lb_listener.https.arn
 }
