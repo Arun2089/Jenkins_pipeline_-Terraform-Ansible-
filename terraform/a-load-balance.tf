@@ -25,7 +25,7 @@ resource "aws_lb_listener" "https" {
     target_group_arn = aws_lb_target_group.jenkins.arn
   }
 
-  certificate_arn = "arn:aws:acm:ap-south-1:286291623788:certificate/87e58756-beac-4ad6-8930-c3ff109dfa2e" 
+  certificate_arn = "arn:aws:acm:ap-south-1:286291623788:certificate/eaada5b5-1067-4700-a1ab-f16dec1fb8e6" 
 
   depends_on = [
     aws_lb.app_lb,
