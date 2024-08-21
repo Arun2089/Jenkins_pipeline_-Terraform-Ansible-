@@ -25,7 +25,7 @@
 
     - name: Add Docker repository
       apt_repository:
-        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
         state: present
 
     - name: Update apt cache after adding Docker repository
@@ -54,9 +54,10 @@
         name: openjdk-11-jdk
         state: present
 
-    - name: Add Jenkins repository key manually
-      become: true
-      shell: curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | apt-key add -
+    - name: Add Jenkins repository key
+      apt_key:
+        url: https://pkg.jenkins.io/debian/jenkins.io.key
+        state: present
 
     - name: Add Jenkins repository
       apt_repository:
@@ -78,7 +79,7 @@
         state: started
         enabled: yes
 
-    - name: Add jenkins user to docker
+    - name: Add jenkins user to docker group
       user:
         name: jenkins
         groups: docker
