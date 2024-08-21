@@ -127,23 +127,17 @@ resource "aws_lb_target_group_attachment" "app_react_instance_attachment" {
 }
 
 # ALB Listener Rule for React Application
-resource "aws_lb_listener_rule" "react_rule" {
-  listener_arn = aws_lb_listener.https.arn
-
+resource "aws_lb_listener_rule" "this" {
   action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.app_react.arn
+    target_group_arn = aws_alb_target_group.app-react.arn
   }
 
-  condition {
-    field  = "host-header"
+ condition {
     host_header {
-      values = ["react.arunlohar.online"]
+      values = "react.arunlohar.online"
     }
   }
 
-  depends_on = [
-    aws_lb_listener.https,
-    aws_lb_target_group.app_react
-  ]
+  listener_arn = data.aws_lb_listener.https.arn
 }
