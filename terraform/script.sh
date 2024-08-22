@@ -5,4 +5,8 @@ mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 chmod 400 /var/lib/jenkins/workspace/Major_pipeline_1/terraform/Key.pem
 
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+chmod 400 /var/lib/jenkins/workspace/Major_pipeline_1/terraform/Key.pem
+
 envsubst < ssh_config > ~/.ssh/config
